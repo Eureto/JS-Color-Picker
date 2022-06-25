@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <title>ColorPicker</title>
+    <script src="script.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;1,300&display=swap" rel="stylesheet">
+    <style type="text/css">
+        body{
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            width: 100vw;
+            cursor:none;
+            font-family: 'Lato', sans-serif;
+        }
+        #brush{
+            height: 40px;
+            position: fixed;
+            transform: translateY(-39px);
+        }
+        #showColor{
+            position: fixed;
+            bottom: 15%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: solid 2px;
+            border-radius: 5px;
+            padding: 10px;
+        }
+        #rgbaText{
+            margin:0;
+            font-size: larger;
+        }
+        #copiedDiv
+        {
+            position: fixed;
+            top: -20%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #4ad8e8;
+            border-radius: 5px;
+            border: solid 1px;
+            padding: 10px;
+            transition: 0.5s ease-in-out;
+        }
+        #instruction{
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            font-size: 20px;
+            color: #000;
+            text-align: center;
+            font-family: 'Lato', sans-serif;
+            animation: fadeOut 10s;
+            opacity: 0;
+        }
+
+        @keyframes fadeOut 
+        {
+            0% {
+                opacity: 1;
+            }
+            70% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+            }
+            
+        }
+
+    </style>
+</head>
+
+<body>
+    <div id="instruction">
+        Use left mouse button to copy rgb value <br>
+        Use right moues button to lock red, green, blue value click 4th time to unlock
+        <br>
+        red - left side<br> 
+        green - right top<br>
+        blue - right bottom<br>
+    </div>
+    <div id="copiedDiv">
+        Copied!
+    </div>
+    <div id="showColor">
+        <p id="rgbaText"> rgb(255, 255, 255) </p>
+    </div>
+    <img id="brush" src="brush.png">
+    <script>
+        // nasłuchiwanie na zdarzenia myszy 
+        document.addEventListener("mousemove", main);
+        document.addEventListener("contextmenu", rightClick);
+        document.addEventListener("click", copied);
+    </script>
+</body>
+
+</html>
